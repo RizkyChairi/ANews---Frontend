@@ -30,7 +30,7 @@ class _CreatePageState extends State<CreatePage> {
       appBar: AppBar(
         title: const Text('Create'),
         backgroundColor:  Colors.white,
-        foregroundColor: Colors.white,
+        foregroundColor: Colors.green,
       ),
       body: Column(
         children: [
