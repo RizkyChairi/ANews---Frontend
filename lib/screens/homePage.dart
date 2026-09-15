@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFFF5F5F5),
 
       appBar: AppBar(
-        title: const Text('Blog App'),
+        title: const Text('ANews'),
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
