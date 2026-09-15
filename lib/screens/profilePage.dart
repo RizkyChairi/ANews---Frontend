@@ -1,4 +1,3 @@
-// lib/screens/profile_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/authProvider.dart';
@@ -202,7 +201,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  // ===== DIALOG: HELP & SUPPORT =====
   void _showHelpDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -304,8 +302,6 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
-
-  // ===== DIALOG: TERMS & CONDITIONS =====
   void _showTermsDialog(BuildContext context) {
     showDialog(
       context: context,
