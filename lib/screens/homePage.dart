@@ -11,9 +11,7 @@ import '../widgets/emptyState.dart';
 import '../widgets/errorState.dart';
 import '../widgets/shimmerpostCard.dart';
 import '../widgets/bannerSlider.dart';
-
 import 'postdetailPage.dart';
-import 'mainnavigation.dart';
 import 'searchPage.dart';
 
 class HomePage extends StatefulWidget {
