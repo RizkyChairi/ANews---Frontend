@@ -98,20 +98,18 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
                     const SizedBox(height: 30),
                     const Text(
-                      'Blog App',
+                      'ANews',
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Cinzel',
                         color: Colors.white,
                       ),
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Share your stories',
+                      'Dekat dengan Alam, Lekat dengan Informasi.',
                       style: TextStyle(
                         fontSize: 16,
-                        fontFamily: 'Cinzel',
                         color: Colors.white,
                       ),
                     ),
