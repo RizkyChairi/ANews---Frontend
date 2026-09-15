@@ -1,5 +1,5 @@
 name: blog_app
-description: Flutter Blog App with REST API
+description: A News - Flutter News App with REST API
 
 publish_to: 'none'
 version: 1.0.0+1
@@ -10,20 +10,21 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
   # HTTP & Storage
   http: ^1.2.0
   shared_preferences: ^2.2.2
-  
+
   # State Management
   provider: ^6.1.1
-  
+
   # Image
   cached_network_image: ^3.3.1
   image_picker: ^1.0.7
-  
-  # UI Packages (yang Anda pilih)
+
+  # UI Packages
   smooth_page_indicator: ^1.1.0
+  carousel_slider: ^5.1.2
   flutter_staggered_animations: ^1.1.1
   custom_refresh_indicator: ^4.0.2
   auto_animated: ^3.2.0
@@ -31,7 +32,7 @@ dependencies:
   searchable_listview: ^2.19.5
   drop_down_list: ^2.1.1
   flutter_native_splash: ^2.4.0
-  
+
   # Navigation
   salomon_bottom_bar: ^3.3.2
 
@@ -41,11 +42,19 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
   uses-material-design: true
-assets:
-    - assets/images/
-  
-fonts:
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+      - assets/images/
+      - assets/images/logo.png
+
+
+  fonts:
     - family: Cinzel
       fonts:
         - asset: assets/fonts/Cinzel-Regular.ttf
@@ -55,7 +64,6 @@ fonts:
           weight: 600
         - asset: assets/fonts/Cinzel-Bold.ttf
           weight: 700
-
 flutter_native_splash:
   color: "#FFFFFF"
   image: assets/images/logo.png

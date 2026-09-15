@@ -74,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // Logo
-                    Container(
+                   Container(
                       width: 150,
                       height: 150,
                       decoration: BoxDecoration(
@@ -88,17 +88,16 @@ class _SplashScreenState extends State<SplashScreen>
                           ),
                         ],
                       ),
-                    child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      'assets/images/logo.png',         
-                      fit: BoxFit.cover,              
+                     
+                      child: const Icon(
+                        Icons.newspaper,
+                        size: 80,
+                        color: Color(0xFF2E7D32),
+                      ),
                     ),
-                  ),
-                ),
-                    const SizedBox(height: 30),
+                                        const SizedBox(height: 30),
                     const Text(
-                      'Blog App',
+                      'A News',
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
@@ -108,7 +107,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Share your stories',
+                      'Aktual, Akurat, Terpercaya',
                       style: TextStyle(
                         fontSize: 16,
                         fontFamily: 'Cinzel',
