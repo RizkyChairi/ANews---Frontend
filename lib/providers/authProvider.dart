@@ -4,7 +4,7 @@ import '../services/authService.dart';
 
 class AuthProvider extends ChangeNotifier {
   final AuthService _authService = AuthService();
-  
+
   UserModel? _user;
   bool _isLoading = false;
   String? _errorMessage;
@@ -18,9 +18,13 @@ class AuthProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    final loggedIn = await _authService.isLoggedIn();
-    if (loggedIn) {
-      _user = await _authService.getUser();
+    try {
+      final loggedIn = await _authService.isLoggedIn();
+      if (loggedIn) {
+        _user = await _authService.getUser();
+      }
+    } catch (e) {
+      _user = null;
     }
 
     _isLoading = false;
@@ -32,16 +36,23 @@ class AuthProvider extends ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
 
-    final result = await _authService.login(email: email, password: password);
+    try {
+      final result = await _authService.login(email: email, password: password);
 
-    if (result['success']) {
-      _user = result['user'];
       _isLoading = false;
-      notifyListeners();
-      return true;
-    } else {
-      _errorMessage = result['message'];
+
+      if (result['success']) {
+        _user = result['user'];
+        notifyListeners();
+        return true;
+      } else {
+        _errorMessage = result['message'];
+        notifyListeners();
+        return false;
+      }
+    } catch (e) {
       _isLoading = false;
+      _errorMessage = 'Error: $e';
       notifyListeners();
       return false;
     }
@@ -56,19 +67,26 @@ class AuthProvider extends ChangeNotifier {
     _errorMessage = null;
     notifyListeners();
 
-    final result = await _authService.register(
-      username: username,
-      email: email,
-      password: password,
-    );
+    try {
+      final result = await _authService.register(
+        username: username,
+        email: email,
+        password: password,
+      );
 
-    _isLoading = false;
-    
-    if (result['success']) {
-      notifyListeners();
-      return true;
-    } else {
-      _errorMessage = result['message'];
+      _isLoading = false;
+
+      if (result['success']) {
+        notifyListeners();
+        return true;
+      } else {
+        _errorMessage = result['message'];
+        notifyListeners();
+        return false;
+      }
+    } catch (e) {
+      _isLoading = false;
+      _errorMessage = 'Error: $e';
       notifyListeners();
       return false;
     }

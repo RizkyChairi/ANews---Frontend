@@ -22,53 +22,72 @@ class _LoginPageState extends State<LoginPage> {
     if (!_formKey.currentState!.validate()) return;
 
     final authProvider = context.read<AuthProvider>();
-    bool success;
 
     if (_isLogin) {
-      // login
-      success = await authProvider.login(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-      );
+      await _handleLogin(authProvider);
     } else {
-      // regist
-      success = await authProvider.register(
-        username: _usernameController.text.trim(),
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-      );
-
-
-      if (success) {
-        success = await authProvider.login(
-          email: _emailController.text.trim(),
-          password: _passwordController.text,
-        );
-      }
+      await _handleRegister(authProvider);
     }
+  }
+
+  Future<void> _handleLogin(AuthProvider authProvider) async {
+    final success = await authProvider.login(
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+
     if (!mounted) return;
 
     if (success) {
-
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            _isLogin ? 'Login successful!' : 'Registration successful!',
-          ),
+        const SnackBar(
+          content: Text('Login berhasil! Selamat datang 👋'),
           backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
         ),
       );
 
-   
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => const MainNavigation()),
         (route) => false,
       );
     } else {
-    
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(authProvider.errorMessage ?? 'An error occurred'),
+          content: Text(authProvider.errorMessage ?? 'Login gagal'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  Future<void> _handleRegister(AuthProvider authProvider) async {
+    final success = await authProvider.register(
+      username: _usernameController.text.trim(),
+      email: _emailController.text.trim(),
+      password: _passwordController.text,
+    );
+
+    if (!mounted) return;
+
+    if (success) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Registrasi berhasil! Silakan login.'),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 3),
+        ),
+      );
+
+      setState(() {
+        _isLogin = true;
+        _usernameController.clear();
+        _passwordController.clear();
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(authProvider.errorMessage ?? 'Registrasi gagal'),
           backgroundColor: Colors.red,
         ),
       );
@@ -106,23 +125,23 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const SizedBox(height: 20),
 
-              // Header
               Center(
                 child: Container(
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.green.shade50,
+                    color: const Color(0xFF2E7D32).withOpacity(0.1),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: const Icon(
-                    Icons.article_rounded,
+                    Icons.newspaper,
                     size: 50,
-                    color: Colors.green,
+                    color: Color(0xFF2E7D32),
                   ),
                 ),
               ),
               const SizedBox(height: 30),
+
               Center(
                 child: Text(
                   _isLogin ? 'Welcome Back!' : 'Create Account',
@@ -133,11 +152,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 8),
+
               Center(
                 child: Text(
                   _isLogin
-                      ? 'Login to continue'
-                      : 'Register to start sharing',
+                      ? 'Login untuk melanjutkan'
+                      : 'Daftar untuk mulai berbagi',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey.shade600,
@@ -146,7 +166,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 40),
 
-              // Username (register only)
               if (!_isLogin) ...[
                 TextFormField(
                   controller: _usernameController,
@@ -159,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Username is required';
+                      return 'Username wajib diisi';
                     }
                     return null;
                   },
@@ -167,7 +186,6 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 16),
               ],
 
-              // Email
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -180,17 +198,16 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Email is required';
+                    return 'Email wajib diisi';
                   }
                   if (!value.contains('@')) {
-                    return 'Enter a valid email';
+                    return 'Email tidak valid';
                   }
                   return null;
                 },
               ),
               const SizedBox(height: 16),
 
-              // Password
               TextFormField(
                 controller: _passwordController,
                 obscureText: _obscurePassword,
@@ -213,26 +230,26 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Password is required';
+                    return 'Password wajib diisi';
                   }
                   if (value.length < 6) {
-                    return 'Password must be at least 6 characters';
+                    return 'Password minimal 6 karakter';
                   }
                   return null;
                 },
               ),
               const SizedBox(height: 30),
 
-              // Submit Button
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
                   onPressed: authProvider.isLoading ? null : _submit,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: const Color(0xFF2E7D32),
                     foregroundColor: Colors.white,
-                    disabledBackgroundColor: Colors.green.shade200,
+                    disabledBackgroundColor:
+                        const Color(0xFF2E7D32).withOpacity(0.4),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -257,18 +274,23 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 20),
 
-              // Toggle Login/Register
               Center(
                 child: TextButton(
                   onPressed: () {
-                    setState(() => _isLogin = !_isLogin);
+                    setState(() {
+                      _isLogin = !_isLogin;
+                      if (_isLogin) {
+                        _usernameController.clear();
+                        _passwordController.clear();
+                      }
+                    });
                   },
                   child: Text(
                     _isLogin
-                        ? "Don't have an account? Register"
-                        : 'Already have an account? Login',
+                        ? "Belum punya akun? Daftar"
+                        : 'Sudah punya akun? Login',
                     style: const TextStyle(
-                      color: Colors.green,
+                      color: Color(0xFF2E7D32),
                       fontWeight: FontWeight.w600,
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';  
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/apiConfig.dart';
@@ -25,7 +26,9 @@ class AuthService {
           'email': email,
           'password': password,
         }),
-      );
+      )
+      .timeout(const Duration(seconds: 10));  
+      
 
       print(' Status: ${response.statusCode}');
       print(' Body: ${response.body}');
@@ -64,7 +67,8 @@ class AuthService {
           'email': email,
           'password': password,
         }),
-      );
+      )
+      .timeout(const Duration(seconds: 10));  
 
       print(' Status: ${response.statusCode}');
       print(' Body: ${response.body}');
