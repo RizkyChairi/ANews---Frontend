@@ -94,13 +94,13 @@ class PostCard extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple.shade50,
+                          color: Colors.green.shade50,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           post.category!.name,
                           style: const TextStyle(
-                            color: Colors.deepPurple,
+                            color: Colors.green,
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                           ),
@@ -139,13 +139,13 @@ class PostCard extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 16,
-                          backgroundColor: Colors.deepPurple.shade100,
+                          backgroundColor: Colors.green.shade100,
                           child: Text(
                             (post.user?.username ?? 'U')[0].toUpperCase(),
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
-                              color: Colors.deepPurple,
+                              color: Colors.green,
                             ),
                           ),
                         ),

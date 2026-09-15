@@ -25,13 +25,13 @@ class EmptyState extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: Colors.deepPurple.shade50,
+                color: Colors.green.shade50,
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 icon,
                 size: 60,
-                color: Colors.deepPurple.shade300,
+                color: Colors.green.shade300,
               ),
             ),
             const SizedBox(height: 24),
@@ -60,7 +60,7 @@ class EmptyState extends StatelessWidget {
                 icon: const Icon(Icons.refresh),
                 label: const Text('Refresh'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple,
+                  backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,

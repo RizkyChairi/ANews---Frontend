@@ -4,7 +4,7 @@ import '../services/categoryService.dart';
 
 class CategoryProvider extends ChangeNotifier {
   final CategoryService _categoryService = CategoryService();
-  
+
   List<CategoryModel> _categories = [];
   bool _isLoading = false;
   String? _errorMessage;
@@ -28,5 +28,32 @@ class CategoryProvider extends ChangeNotifier {
 
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<bool> createCategory({
+    required String name,
+    required String slug,
+    String? description,
+  }) async {
+    _isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
+    final result = await _categoryService.createCategory(
+      name: name,
+      slug: slug,
+      description: description,
+    );
+
+    _isLoading = false;
+
+    if (result['success'] == true) {
+      notifyListeners();
+      return true;
+    } else {
+      _errorMessage = result['message'];
+      notifyListeners();
+      return false;
+    }
   }
 }

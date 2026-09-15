@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/authProvider.dart';
 import 'myblogPage.dart';
+import 'createPage.dart';
 import 'loginPage.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -50,13 +51,13 @@ class ProfilePage extends StatelessWidget {
                   // Avatar
                   CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.deepPurple.shade100,
+                    backgroundColor: Colors.green.shade100,
                     child: Text(
                       user.username[0].toUpperCase(),
                       style: const TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple,
+                        color: Colors.green,
                       ),
                     ),
                   ),
@@ -83,13 +84,13 @@ class ProfilePage extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.deepPurple.shade50,
+                      color: Colors.green.shade50,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
                       user.role.toUpperCase(),
                       style: const TextStyle(
-                        color: Colors.deepPurple,
+                        color: Colors.green,
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                       ),
@@ -112,11 +113,16 @@ class ProfilePage extends StatelessWidget {
             },
               
             ),
-            _buildMenuItem(
-              icon: Icons.settings_outlined,
-              title: 'Settings (ga di buat)',
-              onTap: () {},
-            ),
+           _buildMenuItem(
+              icon: Icons.article_outlined,
+              title: 'Create Post / Category',
+              onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const CreatePage ()),
+              );
+            },
+           ),
             _buildMenuItem(
               icon: Icons.help_outline,
               title: 'Help & Support (ga di buat)',
@@ -129,7 +135,7 @@ class ProfilePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-            // Logout Button
+          
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -190,7 +196,7 @@ class ProfilePage extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        leading: Icon(icon, color: Colors.deepPurple),
+        leading: Icon(icon, color: Colors.green),
         title: Text(
           title,
           style: const TextStyle(

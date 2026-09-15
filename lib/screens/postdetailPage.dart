@@ -42,12 +42,12 @@ class PostDetailPage extends StatelessWidget {
                       fit: BoxFit.cover,
                     )
                   : Container(
-                      color: Colors.deepPurple.shade50,
+                      color: Colors.green.shade50,
                       child: const Center(
                         child: Icon(
                           Icons.article,
                           size: 80,
-                          color: Colors.deepPurple,
+                          color: Colors.green,
                         ),
                       ),
                     ),
@@ -69,13 +69,13 @@ class PostDetailPage extends StatelessWidget {
                         vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple.shade50,
+                        color: Colors.green.shade50,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                         post.category!.name,
                         style: const TextStyle(
-                          color: Colors.deepPurple,
+                          color: Colors.green,
                           fontWeight: FontWeight.w600,
                           fontSize: 13,
                         ),
@@ -99,13 +99,13 @@ class PostDetailPage extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 20,
-                        backgroundColor: Colors.deepPurple.shade100,
+                        backgroundColor: Colors.green.shade100,
                         child: Text(
                           (post.user?.username ?? 'U')[0].toUpperCase(),
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple,
+                            color: Colors.green,
                           ),
                         ),
                       ),

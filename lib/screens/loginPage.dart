@@ -112,13 +112,13 @@ class _LoginPageState extends State<LoginPage> {
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.deepPurple.shade50,
+                    color: Colors.green.shade50,
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: const Icon(
                     Icons.article_rounded,
                     size: 50,
-                    color: Colors.deepPurple,
+                    color: Colors.green,
                   ),
                 ),
               ),
@@ -230,9 +230,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: authProvider.isLoading ? null : _submit,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: Colors.green,
                     foregroundColor: Colors.white,
-                    disabledBackgroundColor: Colors.deepPurple.shade200,
+                    disabledBackgroundColor: Colors.green.shade200,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -268,7 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                         ? "Don't have an account? Register"
                         : 'Already have an account? Login',
                     style: const TextStyle(
-                      color: Colors.deepPurple,
+                      color: Colors.green,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

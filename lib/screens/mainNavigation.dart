@@ -42,7 +42,7 @@ class _MainNavigationState extends State<MainNavigation> {
         child: SalomonBottomBar(
           currentIndex: _currentIndex,
           onTap: (index) => setState(() => _currentIndex = index),
-          selectedItemColor: Colors.deepPurple,
+          selectedItemColor: Colors.green,
           unselectedItemColor: Colors.grey,
           items: [
             SalomonBottomBarItem(
