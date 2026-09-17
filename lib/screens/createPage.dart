@@ -533,7 +533,7 @@ class _CreateCategoryFormState extends State<_CreateCategoryForm> {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) return 'Slug wajib diisi';
-                if (value.length < 3) return 'Slug minimal 2 karakter';
+                if (value.length < 2) return 'Slug minimal 2 karakter';
                 return null;
               },
             ),
