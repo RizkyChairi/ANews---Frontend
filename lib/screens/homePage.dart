@@ -140,14 +140,12 @@ class _HomePageState extends State<HomePage> {
         
               Consumer<PostProvider>(
                 builder: (context, provider, child) {
-                  // Jangan tampilkan banner saat loading
-                  // pertama kali
+                  
                   if (provider.isLoading &&
                       provider.posts.isEmpty) {
                     return const SizedBox.shrink();
                   }
-
-                  // Jangan tampilkan jika tidak ada post
+//banner mati saat empty
                   if (provider.posts.isEmpty) {
                     return const SizedBox.shrink();
                   }

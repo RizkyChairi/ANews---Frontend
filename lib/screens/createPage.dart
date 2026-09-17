@@ -533,7 +533,7 @@ class _CreateCategoryFormState extends State<_CreateCategoryForm> {
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) return 'Slug wajib diisi';
-                if (value.length < 2) return 'Slug minimal 2 karakter';
+                if (value.length < 3) return 'Slug minimal 3 karakter';
                 return null;
               },
             ),
@@ -542,7 +542,7 @@ class _CreateCategoryFormState extends State<_CreateCategoryForm> {
               controller: _descriptionController,
               maxLines: 3,
               decoration: InputDecoration(
-                labelText: 'Deskripsi (Opsional)',
+                labelText: 'Deskripsi',
                 hintText: 'Deskripsi kategori...',
                 filled: true,
                 fillColor: Colors.white,
